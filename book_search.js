@@ -56,11 +56,11 @@
 
     }
 
-    console.log(result);
-
     if (found == false) {
       result.Results = [];
     }
+
+    console.log(result);
     
     return result; 
 }
