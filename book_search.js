@@ -24,8 +24,43 @@
 
     var result = {
         "SearchTerm": "",
-        "Results": []
+        "Results": [
+          {
+            "ISBN": "",
+            "Page": "",
+            "Line": ""
+          }]
     };
+
+    var arr = [];
+    var found = false;
+
+    result.SearchTerm = searchTerm;
+
+    for (let i = 0; i < scannedTextObj[0].Content.length; i++) {
+
+      arr = scannedTextObj[0].Content[i].Text.split(' ');
+
+      for (let x = 0; x < arr.length; x++){
+
+        if (result.SearchTerm == arr[x]){
+
+          result.Results[0].ISBN = scannedTextObj[0].ISBN;
+          result.Results[0].Page = scannedTextObj[0].Content[i].Page;
+          result.Results[0].Line = scannedTextObj[0].Content[i].Line;
+          found = true;
+
+        }
+
+      }
+
+    }
+
+    console.log(result);
+
+    if (found == false) {
+      result.Results = [];
+    }
     
     return result; 
 }
@@ -101,4 +136,14 @@ if (test2result.Results.length == 1) {
     console.log("FAIL: Test 2");
     console.log("Expected:", twentyLeaguesOut.Results.length);
     console.log("Received:", test2result.Results.length);
+}
+
+/** We can check that, if Search Term is not in books, 0 results are returned. */
+const test3result = findSearchTermInBooks("fewfe2345", twentyLeaguesIn);
+if (test3result.Results.length == 0) {
+    console.log("PASS: Test 3");
+} else {
+    console.log("FAIL: Test 3");
+    console.log("Expected:", twentyLeaguesOut.Results.length);
+    console.log("Received:", test3result.Results.length);
 }
