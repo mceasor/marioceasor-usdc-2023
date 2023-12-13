@@ -147,3 +147,23 @@ if (test3result.Results.length == 0) {
     console.log("Expected:", twentyLeaguesOut.Results.length);
     console.log("Received:", test3result.Results.length);
 }
+
+/** We can check that, if Search Term is case sensitive, 1 results are returned. */
+const test4result = findSearchTermInBooks("eyes", twentyLeaguesIn);
+if (test4result.Results.length == 1) {
+    console.log("PASS: Test 4");
+} else {
+    console.log("FAIL: Test 4");
+    console.log("Expected:", twentyLeaguesOut.Results.length);
+    console.log("Received:", test4result.Results.length);
+}
+
+/** We can check that, if Search Term is not case sensitive, 0 results are returned. */
+const test5result = findSearchTermInBooks("Eyes", twentyLeaguesIn);
+if (test5result.Results.length == 0) {
+    console.log("PASS: Test 5");
+} else {
+    console.log("FAIL: Test 5");
+    console.log("Expected:", twentyLeaguesOut.Results.length);
+    console.log("Received:", test5result.Results.length);
+}
